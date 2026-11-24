@@ -82,11 +82,18 @@ class RunnerTest(unittest.TestCase):
         self.alerts = []
         self.closed = []
         self._orig = (runner.read_m33, runner.read_zb, notify.open_alert, notify.close_alerts)
+        self._env = {k: os.environ.get(k) for k in ("ZB_COOKIE", "ZB_EMAIL", "ZB_PASSWORD")}
+        os.environ["ZB_COOKIE"] = "dummy=1"
         notify.open_alert = lambda title, body, key=None: (self.alerts.append((title, body, key)) or (True, "test"))
         notify.close_alerts = lambda note="": (self.closed.append(note) or (0, "ok"))
 
     def tearDown(self):
         runner.read_m33, runner.read_zb, notify.open_alert, notify.close_alerts = self._orig
+        for k, v in self._env.items():
+            if v is None:
+                os.environ.pop(k, None)
+            else:
+                os.environ[k] = v
 
     def run_sync(self, m33, zb, mode="apply"):
         runner.read_m33 = lambda *a, **k: (m33, m33.room(), m33.schedules())
@@ -143,6 +150,16 @@ class RunnerTest(unittest.TestCase):
         self.run_sync(FakeM33(), FakeZB())
         self.assertEqual(self.run_sync(m33, zb), 0)
         self.assertEqual(m33.blocks, [(D1, D1)])
+        self.assertEqual(zb.puts, [])
+
+    def test_skips_zigbang_when_not_configured(self):
+        os.environ.pop("ZB_COOKIE", None)
+        os.environ.pop("ZB_EMAIL", None)
+        os.environ.pop("ZB_PASSWORD", None)
+        m33 = FakeM33()
+        zb = FakeZB()
+        self.assertEqual(self.run_sync(m33, zb), 0)
+        self.assertTrue(any("직방 자격증명이 없어" in a[0] + a[1] for a in self.alerts))
         self.assertEqual(zb.puts, [])
 
     def test_dry_run_writes_nothing(self):

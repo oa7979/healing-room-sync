@@ -170,7 +170,15 @@ def main() -> int:
             problems.append(f"삼삼엠투 읽기 실패: {type(e).__name__}: {e}")
             log(f"[삼삼엠투] 읽기 실패 — {type(e).__name__}: {e}")
 
-    if args.site in ("all", "zb"):
+    zb_configured = bool(os.environ.get("ZB_COOKIE") or
+                         (os.environ.get("ZB_EMAIL") and os.environ.get("ZB_PASSWORD")))
+    if args.site in ("all", "zb") and not zb_configured and not args.zb_fixture:
+        msg = ("직방 자격증명이 없어 직방 동기화를 건너뜁니다 "
+               "(ZB_EMAIL/ZB_PASSWORD 또는 ZB_COOKIE 를 Secrets 에 넣어 주세요). "
+               "삼삼엠투만 읽었습니다(비교·자동수정은 직방을 읽을 수 있어야 합니다).")
+        log(f"[직방] 건너뜀 — {msg}")
+        problems.append(msg)
+    elif args.site in ("all", "zb"):
         try:
             zb_api, zb_item = read_zb(os.environ.get("ZB_EMAIL"), os.environ.get("ZB_PASSWORD"),
                                       os.environ.get("ZB_COOKIE"), args.item_id, args.zb_fixture)
