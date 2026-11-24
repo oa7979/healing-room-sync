@@ -1,18 +1,19 @@
 {
   "alert": {
-    "at": "2026-11-24T18:16:47+09:00",
-    "detail": "이슈 #2 생성",
-    "hash": "3f2a51b03f6ac6ae"
+    "at": "2026-11-24T22:42:31+09:00",
+    "detail": "이슈 #3 생성",
+    "hash": "40bbf4531ca3ff7c"
   },
   "last_run": {
     "add_to_m33": null,
     "add_to_zb": null,
     "applied": [],
-    "at": "2026-11-24T18:16:47+09:00",
+    "at": "2026-11-24T22:42:31+09:00",
     "mode": "apply",
     "price_changes": [],
     "problems": [
-      "직방 자격증명이 없어 직방 동기화를 건너뜁니다 (ZB_EMAIL/ZB_PASSWORD 또는 ZB_COOKIE 를 Secrets 에 넣어 주세요). 삼삼엠투만 읽었습니다 — 비교·자동수정은 직방을 읽을 수 있어야 합니다."
+      "삼삼엠투 읽기 실패: M33Error: 매물 정보를 읽지 못했습니다 (HTTP 401)",
+      "직방 읽기 실패: ZBAuthError: 직방 로그인 거부됨 (HTTP 400: {\"statusCode\":400,\"error\":\"Bad Request\",\"message\":\"Invalid email or password\"})"
     ]
   },
   "m33": {
@@ -260,6 +261,6 @@
       "2027-02-02": "disable"
     }
   },
-  "updated_at": "2026-11-24T09:16:52+00:00",
+  "updated_at": "2026-11-24T13:42:37+00:00",
   "version": 1
 }
