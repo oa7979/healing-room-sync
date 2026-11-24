@@ -1,0 +1,37 @@
+name: healing-room-sync
+
+on:
+  schedule:
+      - cron: '*/10 * * * *'
+        workflow_dispatch:
+            inputs:
+                  dry_run:
+                          description: '읽기만 하고 비교 결과만 출력'
+                                  type: boolean
+                                          default: false
+
+                                          concurrency:
+                                            group: healing-room-sync
+                                              cancel-in-progress: false
+
+                                              permissions:
+                                                contents: write
+                                                  issues: write
+
+                                                  jobs:
+                                                    sync:
+                                                        runs-on: ubuntu-latest
+                                                            timeout-minutes: 6
+                                                                steps:
+                                                                      - uses: actions/checkout@v4
+                                                                            - uses: actions/setup-python@v5
+                                                                                    with:
+                                                                                              python-version: '3.12'
+                                                                                                    - name: 판정 규칙 테스트
+                                                                                                            run: python3 -m unittest discover -s tests
+                                                                                                                  - name: 로그인 세션 복원 (저장소에는 남기지 않음)
+                                                                                                                          uses: actions/cache/restore@v4
+                                                                                                                                  with:
+                                                                                                                                            path: state/session.json
+                                                                                                                                                      key: m33-session-${{ github.run_id }}
+                                                                                                                                                                restore-keys: m33-session-
