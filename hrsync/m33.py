@@ -72,6 +72,9 @@ class M33:
     def login(self) -> None:
         if not self.email or not self.password:
             raise AuthError("삼삼엠투 아이디/비밀번호가 설정되지 않았습니다 (M33_EMAIL/M33_PASSWORD)")
+        # 만료된 고정 세션 쿠키가 남아 있으면 재로그인 후에도 401이 반복되므로 초기화한다.
+        self.c.set_cookie_header("")
+        self.c.jar.clear()
         page = self.c.get(BASE + "/sign-in")
         if page.status != 200:
             raise AuthError(f"로그인 화면을 열지 못했습니다 (HTTP {page.status})")
