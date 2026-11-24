@@ -1,6 +1,8 @@
 """실행기(sync.py) 조립 검증: 가짜 API 로 apply 경로를 돌려 본다. 네트워크 없음."""
 from __future__ import annotations
 
+import contextlib
+import io
 import json
 import os
 import sys
@@ -93,7 +95,8 @@ class RunnerTest(unittest.TestCase):
         old = sys.argv
         sys.argv = argv
         try:
-            return runner.main()
+            with contextlib.redirect_stdout(io.StringIO()):
+                return runner.main()
         finally:
             sys.argv = old
 
