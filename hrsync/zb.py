@@ -116,22 +116,45 @@ class ZB:
         }
 
     def calendar(self, first: date, last: date) -> dict:
-        """{'dates': {YYYY-MM-DD: 'blocked'|'contracted'}} — first~last 구간."""
+        """{'dates': {YYYY-MM-DD: 'blocked'|'contracted'}} — first~last 구간.
+
+        직방은 year·month 를 생략하면 '오늘부터 1년'을 한 번에 준다(문서화된 파라미터 설명).
+        한 번에 못 받으면 월별로 나눠 조회한다."""
         self.ensure_login()
+        hdrs = {"Origin": "https://www.zigbang.com", "Referer": "https://www.zigbang.com/host/item"}
         dates: dict[str, str] = {}
-        cur = date(first.year, first.month, 1)
-        while cur <= last:
-            r = self.c.get(
-                f"{STAY}/host/items/{self.item_id}/calendar?year={cur.year}&month={cur.month}",
-                headers={"Origin": "https://www.zigbang.com",
-                         "Referer": "https://www.zigbang.com/host/item"},
-            )
-            if r.status in (401, 403):
-                raise ZBAuthError(f"직방 세션이 만료됐습니다 (HTTP {r.status})")
-            if r.status != 200:
-                raise ZBError(f"직방 달력을 읽지 못했습니다 {cur.year}-{cur.month:02d} (HTTP {r.status})")
-            dates.update(self._parse_calendar(r.json()))
-            cur = (cur + timedelta(days=32)).replace(day=1)
+        parsed_ok = False
+
+        r = self.c.get(f"{STAY}/host/items/{self.item_id}/calendar", headers=hdrs)
+        if r.status in (401, 403):
+            raise ZBAuthError(f"직방 세션이 만료됐습니다 (HTTP {r.status})")
+        if r.status == 200:
+            try:
+                parsed = self._parse_calendar(r.json())
+                if parsed is not None:
+                    parsed_ok = True
+                    dates = parsed
+            except ValueError:
+                pass
+
+        if not dates:  # 한 번에 못 받으면 월별 조회
+            cur = date(first.year, first.month, 1)
+            while cur <= last:
+                rr = self.c.get(
+                    f"{STAY}/host/items/{self.item_id}/calendar?year={cur.year}&month={cur.month}",
+                    headers=hdrs)
+                if rr.status in (401, 403):
+                    raise ZBAuthError(f"직방 세션이 만료됐습니다 (HTTP {rr.status})")
+                if rr.status != 200:
+                    raise ZBError(f"직방 달력을 읽지 못했습니다 {cur.year}-{cur.month:02d} (HTTP {rr.status})")
+                parsed = self._parse_calendar(rr.json())
+                if parsed is not None:
+                    parsed_ok = True
+                    dates.update(parsed)
+                cur = (cur + timedelta(days=32)).replace(day=1)
+
+        if not dates and not parsed_ok:
+            raise ZBParseError("직방 달력 응답에서 예약 상태를 찾지 못했습니다")
         return {"dates": {k: v for k, v in dates.items() if first.isoformat() <= k <= last.isoformat()}}
 
     @staticmethod
@@ -152,7 +175,7 @@ class ZB:
             if isinstance(root, dict) and isinstance(root.get(key), (dict, list)):
                 root = root[key]
                 break
-        rows = []
+        rows = None
         default_kind = None
         if isinstance(root, list):
             rows = root
@@ -163,9 +186,8 @@ class ZB:
                     if key in ("blockedDates", "unavailableDates"):
                         default_kind = "blocked"
                     break
-        if not rows:
-            # 예약 가능/불가만 있는 형태
-            return out
+        if rows is None:
+            return None
         for row in rows:
             if not isinstance(row, dict):
                 continue

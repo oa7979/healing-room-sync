@@ -147,6 +147,23 @@ class ZBRequestTest(unittest.TestCase):
         self.assertEqual(got["2027-01-27"], "blocked")
         self.assertTrue(any("month=2" in u for _, u, _, _ in c.calls))
 
+    def test_calendar_single_call_when_full_year_returned(self):
+        cal = {"data": {"schedules": [
+            {"startDate": "2027-01-26", "endDate": "2027-01-26", "type": "BLOCKED"}]}}
+        c = FakeClient({"/host/items/2649/calendar": Response(200, json.dumps(cal), {}, "")})
+        api = ZB(c, 2649, cookie="a=b")
+        api.login()
+        got = api.calendar(date(2027, 1, 1), date(2027, 3, 1))["dates"]
+        self.assertEqual(got, {"2027-01-26": "blocked"})
+        cal_calls = [u for m, u, _, _ in c.calls if "/calendar" in u]
+        self.assertEqual(len(cal_calls), 1, cal_calls)
+
+    def test_empty_calendar_is_not_an_error(self):
+        c = FakeClient({"/host/items/2649/calendar": Response(200, json.dumps({"data": {"schedules": []}}), {}, "")})
+        api = ZB(c, 2649, cookie="a=b")
+        api.login()
+        self.assertEqual(api.calendar(date(2027, 1, 1), date(2027, 1, 31))["dates"], {})
+
     def test_403_is_reported(self):
         c = FakeClient({"/host/items/2649": Response(403, "{}", {}, "")})
         api = ZB(c, 2649, cookie="a=b")

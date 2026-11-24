@@ -129,7 +129,7 @@ class ParserTest(unittest.TestCase):
         c = ZB._parse_calendar({"data": {"unavailableDates": [
             {"startDate": "2026-11-24", "endDate": "2026-11-25"}]}})
         self.assertEqual(c, {"2026-11-24": "blocked", "2026-11-25": "blocked"})
-        self.assertEqual(ZB._parse_calendar({"weird": True}), {})
+        self.assertIsNone(ZB._parse_calendar({"weird": True}))
 
     def test_m33_room_fixture(self):
         path = os.path.join(FIX, "m33_room.json")
