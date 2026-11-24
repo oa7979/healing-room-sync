@@ -66,6 +66,10 @@ python3 -m unittest discover -s tests   # 규칙 테스트
 
 ---
 
+> **스케줄은 기본 브랜치에서만 돕니다.** 이 저장소의 기본 브랜치는 `master` 이고, 코드도 `master`·`main` 양쪽에 같은 내용으로 들어 있습니다.
+> `.github/workflows/sync.yml` 은 반드시 **`master`(기본 브랜치)** 에 두어야 10분 스케줄이 걸립니다.
+
+
 ## 4. 처음 설정 (Secrets)
 
 저장소 → Settings → Secrets and variables → Actions → **New repository secret**
