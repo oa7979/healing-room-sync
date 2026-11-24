@@ -154,7 +154,6 @@ class ZB:
         if r.status in (401, 403):
             raise ZBAuthError(f"직방 세션이 만료됐습니다 (HTTP {r.status})")
         if r.status == 200:
-            print("ZB_CAL_NOYM:", r.body[:400], flush=True)
             try:
                 parsed = self._parse_calendar(r.json())
                 if parsed is not None:
@@ -173,8 +172,6 @@ class ZB:
                     raise ZBAuthError(f"직방 세션이 만료됐습니다 (HTTP {rr.status})")
                 if rr.status != 200:
                     raise ZBError(f"직방 달력을 읽지 못했습니다 {cur.year}-{cur.month:02d} (HTTP {rr.status})")
-                if cur == date(first.year, first.month, 1):
-                    print("ZB_CAL_YM:", rr.body[:500], flush=True)
                 parsed = self._parse_calendar(rr.json())
                 if parsed is not None:
                     parsed_ok = True
@@ -219,7 +216,14 @@ class ZB:
         for row in rows:
             if not isinstance(row, dict):
                 continue
-            kind = norm(_dig(row, "type", "status", "scheduleType", "state")) or default_kind
+            kind = norm(_dig(row, "type", "status", "scheduleType", "state"))
+            if not kind and isinstance(row.get("scheduleTypes"), list):
+                types = [norm(t) for t in row["scheduleTypes"]]
+                if "contracted" in types:
+                    kind = "contracted"
+                elif "blocked" in types:
+                    kind = "blocked"
+            kind = kind or default_kind
             s = _dig(row, "startDate", "start", "date")
             e = _dig(row, "endDate", "end", "date") or s
             if not kind or not s:
