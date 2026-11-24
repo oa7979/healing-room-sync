@@ -82,7 +82,7 @@ def open_alert(title: str, body: str, key: str | None = None) -> tuple[bool, str
 
 def close_alerts(note: str = "정상 동작으로 확인되어 자동 종료합니다.") -> tuple[int, str]:
     """열린 동기화 이슈를 모두 닫는다(정상 회차에만 호출)."""
-    issues, err = _api("GET", f"/issues?state=open&labels={urllib.parse.quote(LABEL)}&per_page=50")
+    issues, err = _api("GET", f"/issues?state=open&labels={LABEL}&per_page=50")
     if issues is None:
         return 0, f"이슈 조회 실패: {err}"
     n = 0

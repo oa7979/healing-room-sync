@@ -153,13 +153,11 @@ class RunnerTest(unittest.TestCase):
         self.assertEqual(zb.puts, [])
 
     def test_skips_zigbang_when_not_configured(self):
-        os.environ.pop("ZB_COOKIE", None)
-        os.environ.pop("ZB_EMAIL", None)
-        os.environ.pop("ZB_PASSWORD", None)
-        m33 = FakeM33()
+        for k in ("ZB_COOKIE", "ZB_EMAIL", "ZB_PASSWORD"):
+            os.environ.pop(k, None)
         zb = FakeZB()
-        self.assertEqual(self.run_sync(m33, zb), 0)
-        self.assertTrue(any("직방 자격증명이 없어" in a[0] + a[1] for a in self.alerts))
+        self.assertEqual(self.run_sync(FakeM33(), zb), 0)
+        self.assertTrue(any("직방 자격증명이 없어" in (a[0] + a[1]) for a in self.alerts))
         self.assertEqual(zb.puts, [])
 
     def test_dry_run_writes_nothing(self):
