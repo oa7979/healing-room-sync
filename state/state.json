@@ -1,18 +1,18 @@
 {
   "alert": {
-    "at": "2026-11-24T22:51:14+09:00",
-    "detail": "이슈 #5 생성",
-    "hash": "35f0297d34222ba2"
+    "at": "2026-11-24T22:53:15+09:00",
+    "detail": "이슈 #6 생성",
+    "hash": "658ec3cd60637494"
   },
   "last_run": {
     "add_to_m33": null,
     "add_to_zb": null,
     "applied": [],
-    "at": "2026-11-24T22:51:14+09:00",
+    "at": "2026-11-24T22:53:15+09:00",
     "mode": "apply",
     "price_changes": [],
     "problems": [
-      "직방 읽기 실패: ZBAuthError: 직방 세션이 만료됐습니다 (HTTP 403)"
+      "직방 읽기 실패: ZBAuthError: 직방 세션이 만료됐습니다 (HTTP 403; has_token=False, keys=['secure_token'], cookies=['_zid'])"
     ]
   },
   "m33": {
@@ -260,6 +260,6 @@
       "2027-02-02": "disable"
     }
   },
-  "updated_at": "2026-11-24T13:51:19+00:00",
+  "updated_at": "2026-11-24T13:53:19+00:00",
   "version": 1
 }
