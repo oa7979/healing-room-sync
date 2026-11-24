@@ -1,18 +1,17 @@
 {
   "alert": {
-    "at": "2026-11-24T22:42:31+09:00",
-    "detail": "이슈 #3 생성",
-    "hash": "40bbf4531ca3ff7c"
+    "at": "2026-11-24T22:49:34+09:00",
+    "detail": "이슈 #4 생성",
+    "hash": "45df6e3c2ebfba36"
   },
   "last_run": {
     "add_to_m33": null,
     "add_to_zb": null,
     "applied": [],
-    "at": "2026-11-24T22:42:31+09:00",
+    "at": "2026-11-24T22:49:34+09:00",
     "mode": "apply",
     "price_changes": [],
     "problems": [
-      "삼삼엠투 읽기 실패: M33Error: 매물 정보를 읽지 못했습니다 (HTTP 401)",
       "직방 읽기 실패: ZBAuthError: 직방 로그인 거부됨 (HTTP 400: {\"statusCode\":400,\"error\":\"Bad Request\",\"message\":\"Invalid email or password\"})"
     ]
   },
@@ -261,6 +260,6 @@
       "2027-02-02": "disable"
     }
   },
-  "updated_at": "2026-11-24T13:42:37+00:00",
+  "updated_at": "2026-11-24T13:49:37+00:00",
   "version": 1
 }
