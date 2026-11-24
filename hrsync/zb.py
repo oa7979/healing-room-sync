@@ -60,6 +60,17 @@ class ZB:
         self.password = password
         self.cookie = cookie
         self._logged_in = False
+        self._token: str | None = None
+        self._login_keys: list[str] = []
+
+    def _stay_headers(self) -> dict[str, str]:
+        hdrs = {
+            "Origin": "https://www.zigbang.com",
+            "Referer": "https://www.zigbang.com/host/item",
+        }
+        if self._token:
+            hdrs["Authorization"] = f"Bearer {self._token}"
+        return hdrs
 
     # ------------------------------------------------------------------ login
     def login(self) -> None:
@@ -78,6 +89,18 @@ class ZB:
             raise ZBAuthError(f"직방 로그인 거부됨 (HTTP {r.status}: {r.body[:200]})")
         if r.status not in (200, 201):
             raise ZBAuthError(f"직방 로그인 실패 (HTTP {r.status})")
+        try:
+            body = r.json()
+            if isinstance(body, dict):
+                self._login_keys = list(body.keys())
+                for container in (body, body.get("data"), body.get("result")):
+                    if isinstance(container, dict):
+                        tok = _dig(container, "accessToken", "access_token", "token", "jwt")
+                        if tok:
+                            self._token = str(tok)
+                            break
+        except ValueError:
+            pass
         self._logged_in = True
 
     def ensure_login(self) -> None:
@@ -87,11 +110,13 @@ class ZB:
     # ------------------------------------------------------------------ reads
     def item(self) -> dict:
         self.ensure_login()
-        r = self.c.get(f"{STAY}/host/items/{self.item_id}",
-                       headers={"Origin": "https://www.zigbang.com",
-                                "Referer": f"https://www.zigbang.com/host/item"})
+        r = self.c.get(f"{STAY}/host/items/{self.item_id}", headers=self._stay_headers())
         if r.status in (401, 403):
-            raise ZBAuthError(f"직방 세션이 만료됐습니다 (HTTP {r.status})")
+            raise ZBAuthError(
+                f"직방 세션이 만료됐습니다 (HTTP {r.status}; "
+                f"has_token={bool(self._token)}, keys={self._login_keys}, "
+                f"cookies={list(self.c.cookies('zigbang.com').keys())})"
+            )
         if r.status != 200:
             raise ZBError(f"직방 매물 정보를 읽지 못했습니다 (HTTP {r.status})")
         d = _unwrap(r.json())
@@ -121,7 +146,7 @@ class ZB:
         직방은 year·month 를 생략하면 '오늘부터 1년'을 한 번에 준다(문서화된 파라미터 설명).
         한 번에 못 받으면 월별로 나눠 조회한다."""
         self.ensure_login()
-        hdrs = {"Origin": "https://www.zigbang.com", "Referer": "https://www.zigbang.com/host/item"}
+        hdrs = self._stay_headers()
         dates: dict[str, str] = {}
         parsed_ok = False
 
@@ -213,8 +238,7 @@ class ZB:
             "PUT",
             f"{STAY}/host/items/{self.item_id}/schedules",
             json_body={"unavailableDates": [{"startDate": a, "endDate": b} for a, b in ranges]},
-            headers={"Origin": "https://www.zigbang.com",
-                     "Referer": "https://www.zigbang.com/host/item"},
+            headers=self._stay_headers(),
         )
         if r.status in (401, 403):
             raise ZBAuthError(f"직방 세션이 만료됐습니다 (HTTP {r.status})")
@@ -239,8 +263,7 @@ class ZB:
             "PATCH",
             f"{STAY}/host/items/{self.item_id}",
             json_body={"pricing": pricing},
-            headers={"Origin": "https://www.zigbang.com",
-                     "Referer": "https://www.zigbang.com/host/item"},
+            headers=self._stay_headers(),
         )
         if r.status in (401, 403):
             raise ZBAuthError(f"직방 세션이 만료됐습니다 (HTTP {r.status})")
