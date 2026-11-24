@@ -1,32 +1,19 @@
 {
-  "alert": {
-    "at": "2026-11-24T22:54:00+09:00",
-    "detail": "이슈 #7 생성",
-    "hash": "d6490f5fa8d2ab70"
-  },
   "last_run": {
     "add_to_m33": [],
     "add_to_zb": [
       [
         "2026-11-24",
-        "2027-01-19"
-      ],
-      [
-        "2027-01-26",
-        "2027-02-02"
+        "2026-11-28"
       ]
     ],
     "applied": [
-      "직방 2026-11-24~2027-01-19 예약불가 확인 실패",
-      "직방 2027-01-26~2027-02-02 예약불가 확인 실패"
+      "직방 2026-11-24~2026-11-28 예약불가 완료"
     ],
-    "at": "2026-11-24T22:54:00+09:00",
+    "at": "2026-11-24T22:56:25+09:00",
     "mode": "apply",
     "price_changes": [],
-    "problems": [
-      "직방 2026-11-24~2027-01-19 차단이 반영되지 않았습니다",
-      "직방 2027-01-26~2027-02-02 차단이 반영되지 않았습니다"
-    ]
+    "problems": []
   },
   "m33": {
     "action_ids": {
@@ -278,10 +265,76 @@
       "weekly_rent": 219000
     }
   },
-  "updated_at": "2026-11-24T13:54:10+00:00",
+  "updated_at": "2026-11-24T13:56:28+00:00",
   "version": 1,
   "zb": {
-    "dates": {},
+    "dates": {
+      "2026-11-24": "blocked",
+      "2026-11-25": "blocked",
+      "2026-11-26": "blocked",
+      "2026-11-27": "blocked",
+      "2026-11-28": "blocked",
+      "2026-11-29": "contracted",
+      "2026-11-30": "contracted",
+      "2026-12-01": "contracted",
+      "2026-12-02": "contracted",
+      "2026-12-03": "contracted",
+      "2026-12-04": "contracted",
+      "2026-12-05": "contracted",
+      "2026-12-06": "contracted",
+      "2026-12-07": "contracted",
+      "2026-12-08": "contracted",
+      "2026-12-09": "contracted",
+      "2026-12-10": "contracted",
+      "2026-12-11": "contracted",
+      "2026-12-12": "contracted",
+      "2026-12-13": "contracted",
+      "2026-12-14": "contracted",
+      "2026-12-15": "contracted",
+      "2026-12-16": "contracted",
+      "2026-12-17": "contracted",
+      "2026-12-18": "contracted",
+      "2026-12-19": "contracted",
+      "2026-12-20": "contracted",
+      "2026-12-21": "contracted",
+      "2026-12-22": "contracted",
+      "2026-12-23": "contracted",
+      "2026-12-24": "contracted",
+      "2026-12-25": "contracted",
+      "2026-12-26": "contracted",
+      "2026-12-27": "contracted",
+      "2026-12-28": "contracted",
+      "2026-12-29": "contracted",
+      "2026-12-30": "contracted",
+      "2026-12-31": "contracted",
+      "2027-01-01": "contracted",
+      "2027-01-02": "contracted",
+      "2027-01-03": "contracted",
+      "2027-01-04": "contracted",
+      "2027-01-05": "contracted",
+      "2027-01-06": "contracted",
+      "2027-01-07": "contracted",
+      "2027-01-08": "contracted",
+      "2027-01-09": "contracted",
+      "2027-01-10": "contracted",
+      "2027-01-11": "contracted",
+      "2027-01-12": "contracted",
+      "2027-01-13": "contracted",
+      "2027-01-14": "contracted",
+      "2027-01-15": "contracted",
+      "2027-01-16": "contracted",
+      "2027-01-17": "contracted",
+      "2027-01-18": "contracted",
+      "2027-01-19": "contracted",
+      "2027-01-26": "blocked",
+      "2027-01-27": "blocked",
+      "2027-01-28": "blocked",
+      "2027-01-29": "blocked",
+      "2027-01-30": "blocked",
+      "2027-01-31": "blocked",
+      "2027-02-01": "blocked",
+      "2027-02-02": "blocked"
+    },
     "fees": {
       "cleaning": 39000,
       "maintenance": 69000,
