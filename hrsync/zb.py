@@ -95,7 +95,7 @@ class ZB:
                 self._login_keys = list(body.keys())
                 for container in (body, body.get("data"), body.get("result")):
                     if isinstance(container, dict):
-                        tok = _dig(container, "accessToken", "access_token", "token", "jwt")
+                        tok = _dig(container, "accessToken", "access_token", "token", "jwt", "secure_token")
                         if tok:
                             self._token = str(tok)
                             break
