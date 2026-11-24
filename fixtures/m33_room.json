@@ -1,1 +1,28 @@
-{"code":"SCSS_001","data":{"roomName":"용산힐링룸 서울역10분","addressInfo":{"zipCode":"04304","addrLot":"서울특별시 용산구 청파동1가 1-72","addrStreet":"서울특별시 용산구 효창원로104길 38","addrStreetEn":"38 Hyochangwon-ro 104-gil, Yongsan-gu, Seoul","addrDetail":"501호","floor":"5층","state":"서울특별시","province":"용산구","town":"청파동1가","subwayStations":["서울역"],"schools":[],"lat":37.55029,"lng":126.96574},"propertyType":"STUDIO","spaceStructure":{"roomCount":1,"bathroomCount":1,"kitchenCount":1,"livingRoomCount":1,"duplexStructure":false,"sharedRoom":false,"sharedBathroom":false,"sharedKitchen":false},"pyeongSize":7,"spaceAdditionalInfo":{"hasElevator":false,"parkingType":"FREE_FIRST_COME","parkingNotice":"3대 주차공간중 가운데 자리 사용가능합니다.\n\n주차 불가시 걸어서 3분거리에 서계동 공영주차장이 있습니다."},"usingFee":219000,"discountInfo":{"longTermDiscounts":[{"weeks":8,"discountRate":10,"discountedUsingFee":197100}],"earlyCheckinDiscounts":[]},"maintenanceFeeInfo":{"managementFee":69000,"includeElectricity":true,"includeWater":true,"includeGas":true,"managementFeeDescription":"전기/가스/수도 포함된 금액입니다.\n상식적인 수준 이상으로 많이 나오면 게스트님께 자동 청구됩니다.","cleanFee":39000},"refundPolicy":"MIDDLE","roomOption":{"basicOptions":["REFRIGERATOR","WASHING_MACHINE","AIR_CONDITIONER","TV","WIFI","SINK","INDUCTION","BED"],"additionalOptions":["DOOR_LOCK","MICROWAVE","RICE_COOKER","WATER_PURIFIER","CLOSET","SHOE_RACK","BIDET","AIR_PURIFIER"],"petAllowed":false},"roomImages":[{"index":0,"objectKey":"room/a28f0df4-6f9d-410e-a479-280ec07fd15c.jpg"},{"index":1,"objectKey":"room/20260521_193457_c290834c.png"},{"index":2,"objectKey":"room/e9683789-ee86-44aa-8599-b41b10cfe793.jpg"},{"index":3,"objectKey":"room/20260521_193849_84369853.png"},{"index":4,"objectKey":"room/20260521_195818_29024517.jpg"},{"index":5,"objectKey":"room/20260521_195818_87c48f77.jpg"},{"index":6,"objectKey":"room/20260521_195818_dfb0cde2.jpg"},{"index":7,"objectKey":"room/20260521_195915_52284734.jpg"},{"index":8,"objectKey":"room/20260521_195922_e32ef93b.jpg"}],"roomDescription":{"description":"서울역 도보 10분, 숙대입구역 도보 15분 거리에 있는 \n집처럼 마음 편한 힐링룸입니다.\n출장, 여행, 병원 방문, 장기 체류에 적합한 공간이에요.\n\n비데,정수기,로봇청소기,TV(이동식),냉장고,전자레인지,인덕션,커피포트는 새 제품으로 준비되어 있고, \n\n다이슨 공기청정기 겸 선풍기,세탁기,침대, 와이파이까지 갖춘 풀옵션 숙소입니다.\n\n조용한 주택가에 있어 편하게 쉬실수 있고,\n서울역/KTX/공항철도/지하철 이동이 편리합니다. \n혼자 또는 2인이 머물기 좋습니다.\n\n근처 맛집, 볼거리 너무 많아요.\n시장도 있어 먹거리 풍부해요!","transportation":"- 명동, 홍대, 강남, 지방(ktx) 이동 아주 편해요\n\n- 서울역 도보 10분\n\n- 숙대입구역 도보 15분\n\n- 공항철도, KTX, 지하철 1, 4호선 이용 가능합니다.","usageGuide":"- 입실: 오후 3시 / 퇴실: 오전 11시 \n\n- 비대면 체크인 (도어락 비밀번호 제공)\n\n- 예약 확정 후 상세 안내 메시지 전달드립니다\n\n- 실내 금연 / 반려동물 불가","additionalDescription":"- 근처 유명 맛집, 카페 많아요!\n\n- 시장도 있어서 먹거리 구경거리 많아요!\n\n- 다이슨 공기청정기, 다이슨 선풍기 겸용 비치\n\n- 엘지 정수기 비치\n\n- 최신형 비데 설치\n\n- 로봇청소기 비치\n\n- 조용한 주택가 위치 (소음 적음)\n\n- 혼자 또는 2인 이용에 적합\n\n- 장기 힐링 환영\n\n- 깔끔하게 관리된 위생 상태 유지"},"minimumContractWeeks":1,"allowCheckinDayContract":false,"allowCheckoutDayContract":false,"roomStatus":"REGISTERED"}}
+{
+ "data": {
+  "roomName": "용산힐링룸 서울역10분",
+  "usingFee": 219000,
+  "maintenanceFeeInfo": {
+   "managementFee": 69000,
+   "includeElectricity": true,
+   "includeWater": true,
+   "includeGas": true,
+   "managementFeeDescription": "전기/가스/수도 포함된 금액입니다.\n상식적인 수준 이상으로 많이 나오면 게스트님께 자동 청구됩니다.",
+   "cleanFee": 39000
+  },
+  "discountInfo": {
+   "longTermDiscounts": [
+    {
+     "weeks": 8,
+     "discountRate": 10,
+     "discountedUsingFee": 197100
+    }
+   ],
+   "earlyCheckinDiscounts": []
+  },
+  "refundPolicy": "MIDDLE",
+  "propertyType": "STUDIO",
+  "minimumContractWeeks": 1,
+  "roomStatus": "REGISTERED"
+ }
+}

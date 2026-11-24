@@ -1,1 +1,946 @@
-{"code":"SCSS_001","data":{"schedules":[{"date":"2026-05-25","status":"booking"},{"date":"2026-05-26","status":"booking"},{"date":"2026-05-27","status":"booking"},{"date":"2026-05-28","status":"booking"},{"date":"2026-05-29","status":"booking"},{"date":"2026-05-30","status":"booking"},{"date":"2026-05-31","status":"booking"},{"date":"2026-06-01","status":"booking"},{"date":"2026-06-02","status":"booking"},{"date":"2026-06-03","status":"booking"},{"date":"2026-06-04","status":"booking"},{"date":"2026-06-05","status":"booking"},{"date":"2026-06-06","status":"booking"},{"date":"2026-06-07","status":"booking"},{"date":"2026-06-08","status":"booking"},{"date":"2026-06-09","status":"booking"},{"date":"2026-06-10","status":"booking"},{"date":"2026-06-11","status":"booking"},{"date":"2026-06-12","status":"booking"},{"date":"2026-06-13","status":"booking"},{"date":"2026-06-14","status":"booking"},{"date":"2026-06-15","status":"booking"},{"date":"2026-06-16","status":"booking"},{"date":"2026-06-17","status":"booking"},{"date":"2026-06-18","status":"booking"},{"date":"2026-06-19","status":"booking"},{"date":"2026-06-20","status":"booking"},{"date":"2026-06-21","status":"booking"},{"date":"2026-06-22","status":"booking"},{"date":"2026-06-23","status":"booking"},{"date":"2026-06-24","status":"booking"},{"date":"2026-06-25","status":"booking"},{"date":"2026-06-26","status":"booking"},{"date":"2026-06-27","status":"booking"},{"date":"2026-06-28","status":"booking"},{"date":"2026-06-29","status":"booking"},{"date":"2026-06-30","status":"booking"},{"date":"2026-07-01","status":"booking"},{"date":"2026-07-02","status":"booking"},{"date":"2026-07-03","status":"booking"},{"date":"2026-07-04","status":"booking"},{"date":"2026-07-05","status":"booking"},{"date":"2026-07-06","status":"booking"},{"date":"2026-07-07","status":"booking"},{"date":"2026-07-08","status":"booking"},{"date":"2026-07-09","status":"booking"},{"date":"2026-07-10","status":"booking"},{"date":"2026-07-11","status":"booking"},{"date":"2026-07-12","status":"booking"},{"date":"2026-07-13","status":"booking"},{"date":"2026-07-14","status":"booking"},{"date":"2026-07-15","status":"booking"},{"date":"2026-07-16","status":"booking"},{"date":"2026-07-17","status":"booking"},{"date":"2026-07-18","status":"booking"},{"date":"2026-07-19","status":"booking"},{"date":"2026-07-22","status":"booking"},{"date":"2026-07-23","status":"booking"},{"date":"2026-07-24","status":"booking"},{"date":"2026-07-25","status":"booking"},{"date":"2026-07-26","status":"booking"},{"date":"2026-07-27","status":"booking"},{"date":"2026-07-28","status":"booking"},{"date":"2026-08-02","status":"booking"},{"date":"2026-08-03","status":"booking"},{"date":"2026-08-04","status":"booking"},{"date":"2026-08-05","status":"booking"},{"date":"2026-08-06","status":"booking"},{"date":"2026-08-07","status":"booking"},{"date":"2026-08-08","status":"booking"},{"date":"2026-08-09","status":"booking"},{"date":"2026-08-10","status":"booking"},{"date":"2026-08-11","status":"booking"},{"date":"2026-08-12","status":"booking"},{"date":"2026-08-13","status":"booking"},{"date":"2026-08-14","status":"booking"},{"date":"2026-08-15","status":"disable"},{"date":"2026-08-16","status":"disable"},{"date":"2026-08-17","status":"disable"},{"date":"2026-08-18","status":"disable"},{"date":"2026-08-19","status":"disable"},{"date":"2026-08-20","status":"disable"},{"date":"2026-08-21","status":"disable"},{"date":"2026-08-22","status":"disable"},{"date":"2026-08-23","status":"booking"},{"date":"2026-08-24","status":"booking"},{"date":"2026-08-25","status":"booking"},{"date":"2026-08-26","status":"booking"},{"date":"2026-08-27","status":"booking"},{"date":"2026-08-28","status":"booking"},{"date":"2026-08-29","status":"booking"},{"date":"2026-08-30","status":"booking"},{"date":"2026-08-31","status":"booking"},{"date":"2026-09-01","status":"booking"},{"date":"2026-09-02","status":"booking"},{"date":"2026-09-03","status":"booking"},{"date":"2026-09-04","status":"booking"},{"date":"2026-09-05","status":"booking"},{"date":"2026-09-06","status":"booking"},{"date":"2026-09-07","status":"booking"},{"date":"2026-09-08","status":"booking"},{"date":"2026-09-09","status":"booking"},{"date":"2026-09-10","status":"booking"},{"date":"2026-09-11","status":"booking"},{"date":"2026-09-12","status":"booking"},{"date":"2026-09-13","status":"booking"},{"date":"2026-09-14","status":"booking"},{"date":"2026-09-15","status":"booking"},{"date":"2026-09-16","status":"booking"},{"date":"2026-09-17","status":"booking"},{"date":"2026-09-18","status":"booking"},{"date":"2026-09-19","status":"booking"},{"date":"2026-09-20","status":"booking"},{"date":"2026-09-21","status":"booking"},{"date":"2026-09-22","status":"booking"},{"date":"2026-09-23","status":"booking"},{"date":"2026-09-24","status":"booking"},{"date":"2026-09-25","status":"booking"},{"date":"2026-09-26","status":"booking"},{"date":"2026-09-27","status":"booking"},{"date":"2026-09-28","status":"booking"},{"date":"2026-09-29","status":"booking"},{"date":"2026-09-30","status":"booking"},{"date":"2026-10-01","status":"booking"},{"date":"2026-10-02","status":"booking"},{"date":"2026-10-03","status":"booking"},{"date":"2026-10-04","status":"booking"},{"date":"2026-10-05","status":"booking"},{"date":"2026-10-06","status":"booking"},{"date":"2026-10-07","status":"booking"},{"date":"2026-10-08","status":"booking"},{"date":"2026-10-09","status":"booking"},{"date":"2026-10-10","status":"booking"},{"date":"2026-10-11","status":"booking"},{"date":"2026-10-12","status":"booking"},{"date":"2026-10-13","status":"booking"},{"date":"2026-10-14","status":"booking"},{"date":"2026-10-15","status":"booking"},{"date":"2026-10-16","status":"booking"},{"date":"2026-10-17","status":"booking"},{"date":"2026-10-18","status":"booking"},{"date":"2026-10-19","status":"booking"},{"date":"2026-10-20","status":"booking"},{"date":"2026-10-21","status":"booking"},{"date":"2026-10-22","status":"booking"},{"date":"2026-10-23","status":"booking"},{"date":"2026-10-24","status":"booking"},{"date":"2026-10-25","status":"booking"},{"date":"2026-10-26","status":"booking"},{"date":"2026-10-27","status":"booking"},{"date":"2026-10-28","status":"booking"},{"date":"2026-10-29","status":"booking"},{"date":"2026-10-30","status":"booking"},{"date":"2026-10-31","status":"booking"},{"date":"2026-11-01","status":"booking"},{"date":"2026-11-02","status":"booking"},{"date":"2026-11-03","status":"booking"},{"date":"2026-11-04","status":"booking"},{"date":"2026-11-05","status":"booking"},{"date":"2026-11-06","status":"booking"},{"date":"2026-11-07","status":"booking"},{"date":"2026-11-15","status":"booking"},{"date":"2026-11-16","status":"booking"},{"date":"2026-11-17","status":"booking"},{"date":"2026-11-18","status":"booking"},{"date":"2026-11-19","status":"booking"},{"date":"2026-11-20","status":"booking"},{"date":"2026-11-21","status":"booking"},{"date":"2026-11-22","status":"booking"},{"date":"2026-11-23","status":"booking"},{"date":"2026-11-24","status":"booking"},{"date":"2026-11-25","status":"booking"},{"date":"2026-11-26","status":"booking"},{"date":"2026-11-27","status":"booking"},{"date":"2026-11-28","status":"booking"},{"date":"2026-11-29","status":"disable"},{"date":"2026-11-30","status":"disable"},{"date":"2026-12-01","status":"disable"},{"date":"2026-12-02","status":"disable"},{"date":"2026-12-03","status":"disable"},{"date":"2026-12-04","status":"disable"},{"date":"2026-12-05","status":"disable"},{"date":"2026-12-06","status":"disable"},{"date":"2026-12-07","status":"disable"},{"date":"2026-12-08","status":"disable"},{"date":"2026-12-09","status":"disable"},{"date":"2026-12-10","status":"disable"},{"date":"2026-12-11","status":"disable"},{"date":"2026-12-12","status":"disable"},{"date":"2026-12-13","status":"disable"},{"date":"2026-12-14","status":"disable"},{"date":"2026-12-15","status":"disable"},{"date":"2026-12-16","status":"disable"},{"date":"2026-12-17","status":"disable"},{"date":"2026-12-18","status":"disable"},{"date":"2026-12-19","status":"disable"},{"date":"2026-12-20","status":"disable"},{"date":"2026-12-21","status":"disable"},{"date":"2026-12-22","status":"disable"},{"date":"2026-12-23","status":"disable"},{"date":"2026-12-24","status":"disable"},{"date":"2026-12-25","status":"disable"},{"date":"2026-12-26","status":"disable"},{"date":"2026-12-27","status":"disable"},{"date":"2026-12-28","status":"disable"},{"date":"2026-12-29","status":"disable"},{"date":"2026-12-30","status":"disable"},{"date":"2026-12-31","status":"disable"},{"date":"2027-01-01","status":"disable"},{"date":"2027-01-02","status":"disable"},{"date":"2027-01-03","status":"disable"},{"date":"2027-01-04","status":"disable"},{"date":"2027-01-05","status":"disable"},{"date":"2027-01-06","status":"disable"},{"date":"2027-01-07","status":"disable"},{"date":"2027-01-08","status":"disable"},{"date":"2027-01-09","status":"disable"},{"date":"2027-01-10","status":"disable"},{"date":"2027-01-11","status":"disable"},{"date":"2027-01-12","status":"disable"},{"date":"2027-01-13","status":"disable"},{"date":"2027-01-14","status":"disable"},{"date":"2027-01-15","status":"disable"},{"date":"2027-01-16","status":"disable"},{"date":"2027-01-17","status":"disable"},{"date":"2027-01-18","status":"disable"},{"date":"2027-01-19","status":"disable"},{"date":"2027-01-26","status":"booking"},{"date":"2027-01-27","status":"booking"},{"date":"2027-01-28","status":"booking"},{"date":"2027-01-29","status":"booking"},{"date":"2027-01-30","status":"booking"},{"date":"2027-01-31","status":"booking"},{"date":"2027-02-01","status":"booking"},{"date":"2027-02-02","status":"disable"}],"contracts":[{"initialContractId":750151,"startDate":"2026-05-25","endDate":"2026-07-19","checkoutDate":"2026-07-19"},{"initialContractId":826145,"startDate":"2026-07-22","endDate":"2026-07-28","checkoutDate":"2026-08-01"},{"initialContractId":835016,"startDate":"2026-08-02","endDate":"2026-08-15","checkoutDate":"2026-08-15"},{"initialContractId":838552,"startDate":"2026-08-23","endDate":"2026-10-17","checkoutDate":"2026-10-17"},{"initialContractId":938187,"startDate":"2026-10-18","endDate":"2026-11-07","checkoutDate":"2026-11-07"},{"initialContractId":890450,"startDate":"2026-11-15","endDate":"2026-11-28","checkoutDate":null},{"initialContractId":1013193,"startDate":"2027-01-26","endDate":"2027-02-01","checkoutDate":null}]}}
+{
+ "data": {
+  "schedules": [
+   {
+    "date": "2026-05-25",
+    "status": "booking"
+   },
+   {
+    "date": "2026-05-26",
+    "status": "booking"
+   },
+   {
+    "date": "2026-05-27",
+    "status": "booking"
+   },
+   {
+    "date": "2026-05-28",
+    "status": "booking"
+   },
+   {
+    "date": "2026-05-29",
+    "status": "booking"
+   },
+   {
+    "date": "2026-05-30",
+    "status": "booking"
+   },
+   {
+    "date": "2026-05-31",
+    "status": "booking"
+   },
+   {
+    "date": "2026-06-01",
+    "status": "booking"
+   },
+   {
+    "date": "2026-06-02",
+    "status": "booking"
+   },
+   {
+    "date": "2026-06-03",
+    "status": "booking"
+   },
+   {
+    "date": "2026-06-04",
+    "status": "booking"
+   },
+   {
+    "date": "2026-06-05",
+    "status": "booking"
+   },
+   {
+    "date": "2026-06-06",
+    "status": "booking"
+   },
+   {
+    "date": "2026-06-07",
+    "status": "booking"
+   },
+   {
+    "date": "2026-06-08",
+    "status": "booking"
+   },
+   {
+    "date": "2026-06-09",
+    "status": "booking"
+   },
+   {
+    "date": "2026-06-10",
+    "status": "booking"
+   },
+   {
+    "date": "2026-06-11",
+    "status": "booking"
+   },
+   {
+    "date": "2026-06-12",
+    "status": "booking"
+   },
+   {
+    "date": "2026-06-13",
+    "status": "booking"
+   },
+   {
+    "date": "2026-06-14",
+    "status": "booking"
+   },
+   {
+    "date": "2026-06-15",
+    "status": "booking"
+   },
+   {
+    "date": "2026-06-16",
+    "status": "booking"
+   },
+   {
+    "date": "2026-06-17",
+    "status": "booking"
+   },
+   {
+    "date": "2026-06-18",
+    "status": "booking"
+   },
+   {
+    "date": "2026-06-19",
+    "status": "booking"
+   },
+   {
+    "date": "2026-06-20",
+    "status": "booking"
+   },
+   {
+    "date": "2026-06-21",
+    "status": "booking"
+   },
+   {
+    "date": "2026-06-22",
+    "status": "booking"
+   },
+   {
+    "date": "2026-06-23",
+    "status": "booking"
+   },
+   {
+    "date": "2026-06-24",
+    "status": "booking"
+   },
+   {
+    "date": "2026-06-25",
+    "status": "booking"
+   },
+   {
+    "date": "2026-06-26",
+    "status": "booking"
+   },
+   {
+    "date": "2026-06-27",
+    "status": "booking"
+   },
+   {
+    "date": "2026-06-28",
+    "status": "booking"
+   },
+   {
+    "date": "2026-06-29",
+    "status": "booking"
+   },
+   {
+    "date": "2026-06-30",
+    "status": "booking"
+   },
+   {
+    "date": "2026-07-01",
+    "status": "booking"
+   },
+   {
+    "date": "2026-07-02",
+    "status": "booking"
+   },
+   {
+    "date": "2026-07-03",
+    "status": "booking"
+   },
+   {
+    "date": "2026-07-04",
+    "status": "booking"
+   },
+   {
+    "date": "2026-07-05",
+    "status": "booking"
+   },
+   {
+    "date": "2026-07-06",
+    "status": "booking"
+   },
+   {
+    "date": "2026-07-07",
+    "status": "booking"
+   },
+   {
+    "date": "2026-07-08",
+    "status": "booking"
+   },
+   {
+    "date": "2026-07-09",
+    "status": "booking"
+   },
+   {
+    "date": "2026-07-10",
+    "status": "booking"
+   },
+   {
+    "date": "2026-07-11",
+    "status": "booking"
+   },
+   {
+    "date": "2026-07-12",
+    "status": "booking"
+   },
+   {
+    "date": "2026-07-13",
+    "status": "booking"
+   },
+   {
+    "date": "2026-07-14",
+    "status": "booking"
+   },
+   {
+    "date": "2026-07-15",
+    "status": "booking"
+   },
+   {
+    "date": "2026-07-16",
+    "status": "booking"
+   },
+   {
+    "date": "2026-07-17",
+    "status": "booking"
+   },
+   {
+    "date": "2026-07-18",
+    "status": "booking"
+   },
+   {
+    "date": "2026-07-19",
+    "status": "booking"
+   },
+   {
+    "date": "2026-07-22",
+    "status": "booking"
+   },
+   {
+    "date": "2026-07-23",
+    "status": "booking"
+   },
+   {
+    "date": "2026-07-24",
+    "status": "booking"
+   },
+   {
+    "date": "2026-07-25",
+    "status": "booking"
+   },
+   {
+    "date": "2026-07-26",
+    "status": "booking"
+   },
+   {
+    "date": "2026-07-27",
+    "status": "booking"
+   },
+   {
+    "date": "2026-07-28",
+    "status": "booking"
+   },
+   {
+    "date": "2026-08-02",
+    "status": "booking"
+   },
+   {
+    "date": "2026-08-03",
+    "status": "booking"
+   },
+   {
+    "date": "2026-08-04",
+    "status": "booking"
+   },
+   {
+    "date": "2026-08-05",
+    "status": "booking"
+   },
+   {
+    "date": "2026-08-06",
+    "status": "booking"
+   },
+   {
+    "date": "2026-08-07",
+    "status": "booking"
+   },
+   {
+    "date": "2026-08-08",
+    "status": "booking"
+   },
+   {
+    "date": "2026-08-09",
+    "status": "booking"
+   },
+   {
+    "date": "2026-08-10",
+    "status": "booking"
+   },
+   {
+    "date": "2026-08-11",
+    "status": "booking"
+   },
+   {
+    "date": "2026-08-12",
+    "status": "booking"
+   },
+   {
+    "date": "2026-08-13",
+    "status": "booking"
+   },
+   {
+    "date": "2026-08-14",
+    "status": "booking"
+   },
+   {
+    "date": "2026-08-15",
+    "status": "disable"
+   },
+   {
+    "date": "2026-08-16",
+    "status": "disable"
+   },
+   {
+    "date": "2026-08-17",
+    "status": "disable"
+   },
+   {
+    "date": "2026-08-18",
+    "status": "disable"
+   },
+   {
+    "date": "2026-08-19",
+    "status": "disable"
+   },
+   {
+    "date": "2026-08-20",
+    "status": "disable"
+   },
+   {
+    "date": "2026-08-21",
+    "status": "disable"
+   },
+   {
+    "date": "2026-08-22",
+    "status": "disable"
+   },
+   {
+    "date": "2026-08-23",
+    "status": "booking"
+   },
+   {
+    "date": "2026-08-24",
+    "status": "booking"
+   },
+   {
+    "date": "2026-08-25",
+    "status": "booking"
+   },
+   {
+    "date": "2026-08-26",
+    "status": "booking"
+   },
+   {
+    "date": "2026-08-27",
+    "status": "booking"
+   },
+   {
+    "date": "2026-08-28",
+    "status": "booking"
+   },
+   {
+    "date": "2026-08-29",
+    "status": "booking"
+   },
+   {
+    "date": "2026-08-30",
+    "status": "booking"
+   },
+   {
+    "date": "2026-08-31",
+    "status": "booking"
+   },
+   {
+    "date": "2026-09-01",
+    "status": "booking"
+   },
+   {
+    "date": "2026-09-02",
+    "status": "booking"
+   },
+   {
+    "date": "2026-09-03",
+    "status": "booking"
+   },
+   {
+    "date": "2026-09-04",
+    "status": "booking"
+   },
+   {
+    "date": "2026-09-05",
+    "status": "booking"
+   },
+   {
+    "date": "2026-09-06",
+    "status": "booking"
+   },
+   {
+    "date": "2026-09-07",
+    "status": "booking"
+   },
+   {
+    "date": "2026-09-08",
+    "status": "booking"
+   },
+   {
+    "date": "2026-09-09",
+    "status": "booking"
+   },
+   {
+    "date": "2026-09-10",
+    "status": "booking"
+   },
+   {
+    "date": "2026-09-11",
+    "status": "booking"
+   },
+   {
+    "date": "2026-09-12",
+    "status": "booking"
+   },
+   {
+    "date": "2026-09-13",
+    "status": "booking"
+   },
+   {
+    "date": "2026-09-14",
+    "status": "booking"
+   },
+   {
+    "date": "2026-09-15",
+    "status": "booking"
+   },
+   {
+    "date": "2026-09-16",
+    "status": "booking"
+   },
+   {
+    "date": "2026-09-17",
+    "status": "booking"
+   },
+   {
+    "date": "2026-09-18",
+    "status": "booking"
+   },
+   {
+    "date": "2026-09-19",
+    "status": "booking"
+   },
+   {
+    "date": "2026-09-20",
+    "status": "booking"
+   },
+   {
+    "date": "2026-09-21",
+    "status": "booking"
+   },
+   {
+    "date": "2026-09-22",
+    "status": "booking"
+   },
+   {
+    "date": "2026-09-23",
+    "status": "booking"
+   },
+   {
+    "date": "2026-09-24",
+    "status": "booking"
+   },
+   {
+    "date": "2026-09-25",
+    "status": "booking"
+   },
+   {
+    "date": "2026-09-26",
+    "status": "booking"
+   },
+   {
+    "date": "2026-09-27",
+    "status": "booking"
+   },
+   {
+    "date": "2026-09-28",
+    "status": "booking"
+   },
+   {
+    "date": "2026-09-29",
+    "status": "booking"
+   },
+   {
+    "date": "2026-09-30",
+    "status": "booking"
+   },
+   {
+    "date": "2026-10-01",
+    "status": "booking"
+   },
+   {
+    "date": "2026-10-02",
+    "status": "booking"
+   },
+   {
+    "date": "2026-10-03",
+    "status": "booking"
+   },
+   {
+    "date": "2026-10-04",
+    "status": "booking"
+   },
+   {
+    "date": "2026-10-05",
+    "status": "booking"
+   },
+   {
+    "date": "2026-10-06",
+    "status": "booking"
+   },
+   {
+    "date": "2026-10-07",
+    "status": "booking"
+   },
+   {
+    "date": "2026-10-08",
+    "status": "booking"
+   },
+   {
+    "date": "2026-10-09",
+    "status": "booking"
+   },
+   {
+    "date": "2026-10-10",
+    "status": "booking"
+   },
+   {
+    "date": "2026-10-11",
+    "status": "booking"
+   },
+   {
+    "date": "2026-10-12",
+    "status": "booking"
+   },
+   {
+    "date": "2026-10-13",
+    "status": "booking"
+   },
+   {
+    "date": "2026-10-14",
+    "status": "booking"
+   },
+   {
+    "date": "2026-10-15",
+    "status": "booking"
+   },
+   {
+    "date": "2026-10-16",
+    "status": "booking"
+   },
+   {
+    "date": "2026-10-17",
+    "status": "booking"
+   },
+   {
+    "date": "2026-10-18",
+    "status": "booking"
+   },
+   {
+    "date": "2026-10-19",
+    "status": "booking"
+   },
+   {
+    "date": "2026-10-20",
+    "status": "booking"
+   },
+   {
+    "date": "2026-10-21",
+    "status": "booking"
+   },
+   {
+    "date": "2026-10-22",
+    "status": "booking"
+   },
+   {
+    "date": "2026-10-23",
+    "status": "booking"
+   },
+   {
+    "date": "2026-10-24",
+    "status": "booking"
+   },
+   {
+    "date": "2026-10-25",
+    "status": "booking"
+   },
+   {
+    "date": "2026-10-26",
+    "status": "booking"
+   },
+   {
+    "date": "2026-10-27",
+    "status": "booking"
+   },
+   {
+    "date": "2026-10-28",
+    "status": "booking"
+   },
+   {
+    "date": "2026-10-29",
+    "status": "booking"
+   },
+   {
+    "date": "2026-10-30",
+    "status": "booking"
+   },
+   {
+    "date": "2026-10-31",
+    "status": "booking"
+   },
+   {
+    "date": "2026-11-01",
+    "status": "booking"
+   },
+   {
+    "date": "2026-11-02",
+    "status": "booking"
+   },
+   {
+    "date": "2026-11-03",
+    "status": "booking"
+   },
+   {
+    "date": "2026-11-04",
+    "status": "booking"
+   },
+   {
+    "date": "2026-11-05",
+    "status": "booking"
+   },
+   {
+    "date": "2026-11-06",
+    "status": "booking"
+   },
+   {
+    "date": "2026-11-07",
+    "status": "booking"
+   },
+   {
+    "date": "2026-11-15",
+    "status": "booking"
+   },
+   {
+    "date": "2026-11-16",
+    "status": "booking"
+   },
+   {
+    "date": "2026-11-17",
+    "status": "booking"
+   },
+   {
+    "date": "2026-11-18",
+    "status": "booking"
+   },
+   {
+    "date": "2026-11-19",
+    "status": "booking"
+   },
+   {
+    "date": "2026-11-20",
+    "status": "booking"
+   },
+   {
+    "date": "2026-11-21",
+    "status": "booking"
+   },
+   {
+    "date": "2026-11-22",
+    "status": "booking"
+   },
+   {
+    "date": "2026-11-23",
+    "status": "booking"
+   },
+   {
+    "date": "2026-11-24",
+    "status": "booking"
+   },
+   {
+    "date": "2026-11-25",
+    "status": "booking"
+   },
+   {
+    "date": "2026-11-26",
+    "status": "booking"
+   },
+   {
+    "date": "2026-11-27",
+    "status": "booking"
+   },
+   {
+    "date": "2026-11-28",
+    "status": "booking"
+   },
+   {
+    "date": "2026-11-29",
+    "status": "disable"
+   },
+   {
+    "date": "2026-11-30",
+    "status": "disable"
+   },
+   {
+    "date": "2026-12-01",
+    "status": "disable"
+   },
+   {
+    "date": "2026-12-02",
+    "status": "disable"
+   },
+   {
+    "date": "2026-12-03",
+    "status": "disable"
+   },
+   {
+    "date": "2026-12-04",
+    "status": "disable"
+   },
+   {
+    "date": "2026-12-05",
+    "status": "disable"
+   },
+   {
+    "date": "2026-12-06",
+    "status": "disable"
+   },
+   {
+    "date": "2026-12-07",
+    "status": "disable"
+   },
+   {
+    "date": "2026-12-08",
+    "status": "disable"
+   },
+   {
+    "date": "2026-12-09",
+    "status": "disable"
+   },
+   {
+    "date": "2026-12-10",
+    "status": "disable"
+   },
+   {
+    "date": "2026-12-11",
+    "status": "disable"
+   },
+   {
+    "date": "2026-12-12",
+    "status": "disable"
+   },
+   {
+    "date": "2026-12-13",
+    "status": "disable"
+   },
+   {
+    "date": "2026-12-14",
+    "status": "disable"
+   },
+   {
+    "date": "2026-12-15",
+    "status": "disable"
+   },
+   {
+    "date": "2026-12-16",
+    "status": "disable"
+   },
+   {
+    "date": "2026-12-17",
+    "status": "disable"
+   },
+   {
+    "date": "2026-12-18",
+    "status": "disable"
+   },
+   {
+    "date": "2026-12-19",
+    "status": "disable"
+   },
+   {
+    "date": "2026-12-20",
+    "status": "disable"
+   },
+   {
+    "date": "2026-12-21",
+    "status": "disable"
+   },
+   {
+    "date": "2026-12-22",
+    "status": "disable"
+   },
+   {
+    "date": "2026-12-23",
+    "status": "disable"
+   },
+   {
+    "date": "2026-12-24",
+    "status": "disable"
+   },
+   {
+    "date": "2026-12-25",
+    "status": "disable"
+   },
+   {
+    "date": "2026-12-26",
+    "status": "disable"
+   },
+   {
+    "date": "2026-12-27",
+    "status": "disable"
+   },
+   {
+    "date": "2026-12-28",
+    "status": "disable"
+   },
+   {
+    "date": "2026-12-29",
+    "status": "disable"
+   },
+   {
+    "date": "2026-12-30",
+    "status": "disable"
+   },
+   {
+    "date": "2026-12-31",
+    "status": "disable"
+   },
+   {
+    "date": "2027-01-01",
+    "status": "disable"
+   },
+   {
+    "date": "2027-01-02",
+    "status": "disable"
+   },
+   {
+    "date": "2027-01-03",
+    "status": "disable"
+   },
+   {
+    "date": "2027-01-04",
+    "status": "disable"
+   },
+   {
+    "date": "2027-01-05",
+    "status": "disable"
+   },
+   {
+    "date": "2027-01-06",
+    "status": "disable"
+   },
+   {
+    "date": "2027-01-07",
+    "status": "disable"
+   },
+   {
+    "date": "2027-01-08",
+    "status": "disable"
+   },
+   {
+    "date": "2027-01-09",
+    "status": "disable"
+   },
+   {
+    "date": "2027-01-10",
+    "status": "disable"
+   },
+   {
+    "date": "2027-01-11",
+    "status": "disable"
+   },
+   {
+    "date": "2027-01-12",
+    "status": "disable"
+   },
+   {
+    "date": "2027-01-13",
+    "status": "disable"
+   },
+   {
+    "date": "2027-01-14",
+    "status": "disable"
+   },
+   {
+    "date": "2027-01-15",
+    "status": "disable"
+   },
+   {
+    "date": "2027-01-16",
+    "status": "disable"
+   },
+   {
+    "date": "2027-01-17",
+    "status": "disable"
+   },
+   {
+    "date": "2027-01-18",
+    "status": "disable"
+   },
+   {
+    "date": "2027-01-19",
+    "status": "disable"
+   },
+   {
+    "date": "2027-01-26",
+    "status": "booking"
+   },
+   {
+    "date": "2027-01-27",
+    "status": "booking"
+   },
+   {
+    "date": "2027-01-28",
+    "status": "booking"
+   },
+   {
+    "date": "2027-01-29",
+    "status": "booking"
+   },
+   {
+    "date": "2027-01-30",
+    "status": "booking"
+   },
+   {
+    "date": "2027-01-31",
+    "status": "booking"
+   },
+   {
+    "date": "2027-02-01",
+    "status": "booking"
+   },
+   {
+    "date": "2027-02-02",
+    "status": "disable"
+   }
+  ]
+ }
+}

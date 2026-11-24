@@ -72,7 +72,7 @@ python3 -m unittest discover -s tests   # 규칙 테스트
 
 | 이름 | 값 | 필수 |
 | --- | --- | --- |
-| `M33_EMAIL` | 삼삼엠투 로그인 이메일 (`oa7979@gmail.com`) | ✅ |
+| `M33_EMAIL` | 삼삼엠투 로그인 이메일 | ✅ |
 | `M33_PASSWORD` | 삼삼엠투 비밀번호 | ✅ |
 | `ZB_EMAIL` | 직방 로그인 이메일 | 직방 자동화에 필요 |
 | `ZB_PASSWORD` | 직방 비밀번호 | 위와 동일 |

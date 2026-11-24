@@ -103,7 +103,7 @@ def _print_fallback(title: str, body: str) -> None:
 # --------------------------------------------------------------------- smtp (선택)
 def build_message(subject: str, body: str) -> EmailMessage:
     user = os.environ.get("SMTP_USER", "")
-    to = os.environ.get("ALERT_TO") or user or "oa7979@gmail.com"
+    to = os.environ.get("ALERT_TO") or user or "noreply@example.com"
     msg = EmailMessage()
     msg["Subject"] = f"{TAG} {subject}"
     msg["From"] = user or "healing-room-sync@localhost"

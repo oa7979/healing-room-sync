@@ -146,7 +146,7 @@ class ParserTest(unittest.TestCase):
         msg = notify.build_message("로그인 실패", "본문")
         self.assertTrue(msg["Subject"].startswith("[힐링룸동기화]"))
         self.assertEqual(msg["To"], os.environ.get("ALERT_TO") or os.environ.get("SMTP_USER")
-                         or "oa7979@gmail.com")
+                         or "noreply@example.com")
 
 
 class RuleDocTest(unittest.TestCase):

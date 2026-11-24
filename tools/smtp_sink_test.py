@@ -67,14 +67,14 @@ def main() -> int:
     t.start()
     os.environ.update({
         "SMTP_HOST": "127.0.0.1", "SMTP_PORT": str(port), "SMTP_SECURE": "none",
-        "SMTP_USER": "oa7979@gmail.com", "SMTP_PASS": "dummy-app-password",
-        "ALERT_TO": "oa7979@gmail.com",
+        "SMTP_USER": "sync-test@example.com", "SMTP_PASS": "dummy-app-password",
+        "ALERT_TO": "sync-test@example.com",
     })
-    ok, detail = notify.send("테스트: 로그인 실패 경로 점검",
+    ok, detail = notify.send_mail("테스트: 로그인 실패 경로 점검",
                              "이것은 동기화 프로그램의 알림 경로 점검용 메일입니다.")
     time.sleep(0.3)
     srv.shutdown()
-    print("send() ->", ok, detail)
+    print("send_mail() ->", ok, detail)
     if not received:
         print("FAIL: SMTP 서버가 메일을 받지 못했습니다")
         return 1
@@ -86,7 +86,7 @@ def main() -> int:
                       for p, enc in decode_header(msg["Subject"]))
     checks = {
         "제목 태그": subject.startswith("[힐링룸동기화]"),
-        "받는 사람": "oa7979@gmail.com" in str(msg["To"]),
+        "받는 사람": "sync-test@example.com" in str(msg["To"]),
         "본문": "알림 경로 점검용" in body,
     }
     print("  디코드된 제목:", subject)
