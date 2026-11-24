@@ -1,0 +1,10 @@
+# 자격증명/세션은 절대 저장소에 올리지 않는다
+state/session.json
+state/session.json.tmp
+state/*.tmp
+.tmp_cookie
+
+# 개발 중 생긴 파일
+__pycache__/
+*.pyc
+state/devstate.json
