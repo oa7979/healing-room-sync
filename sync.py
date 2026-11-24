@@ -343,6 +343,7 @@ def main() -> int:
         alert_bits += [f"차단이 사라짐 — {r}" for r in removed]
 
     alert_state = st.get("alert") or {}
+    alert_ok = False
     body = "\n".join(lines) + "\n\n■ 요약\n" + "\n".join(f"- {b}" for b in alert_bits)
 
     if alert_bits and args.mode == "apply":
@@ -351,13 +352,15 @@ def main() -> int:
         recent = False
         if last:
             try:
-                recent = (t0 - datetime.fromisoformat(last)) < timedelta(hours=6)
+                recent = (t0 - datetime.fromisoformat(last)) < timedelta(hours=24)
             except ValueError:
                 recent = False
         if recent and alert_state.get("hash") == h:
-            log("\n[알림] 같은 내용을 6시간 안에 이미 남겼습니다 — 이슈 새로 만들지 않음")
+            log("\n[알림] 같은 내용을 24시간 안에 이미 남겼습니다 — 이슈 새로 만들지 않음")
+            alert_ok = True
         else:
             ok, detail = notify.open_alert("확인이 필요합니다", body, key=h)
+            alert_ok = ok
             if os.environ.get("SMTP_USER") and os.environ.get("SMTP_PASS"):
                 mok, mdetail = notify.send_mail("확인이 필요합니다", body)
                 detail += f" / 메일 {'발송' if mok else '미발송'}({mdetail})"
@@ -374,8 +377,14 @@ def main() -> int:
         for b in alert_bits:
             log(f"  - {b}")
 
-    statemod.save(args.state, st)
-    return 1 if problems else 0
+    if args.mode == "apply":
+        statemod.save(args.state, st)
+    else:
+        print("\n(드라이런이라 상태 파일은 저장하지 않았습니다)")
+    # 예외가 '이슈로 기록'됐으면 실행 자체는 성공으로 끝낸다.
+    # (실패로 끝내면 GitHub 이 매 회차 실패 메일을 보내 사용자 메일함이 지저분해진다.
+    #  이슈 기록조차 실패했을 때만 비정상 종료해 GitHub 실패 알림을 마지막 수단으로 쓴다.)
+    return 0 if (not problems or alert_ok) else 1
 
 
 if __name__ == "__main__":

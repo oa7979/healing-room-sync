@@ -63,6 +63,7 @@ jobs:
 
       - name: 로그인 세션 저장
         if: always()
+        continue-on-error: true
         uses: actions/cache/save@v4
         with:
           path: state/session.json
