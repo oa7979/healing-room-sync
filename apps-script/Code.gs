@@ -95,6 +95,15 @@ function replaceKeys_(desc, family, tag) {
   return body ? body + '\n' + tag : tag;
 }
 
+// 이미 붙어 있는 게스트 이름 괄호는 지우지 않는다.
+// (사람이 손으로 넣은 이름을 자동 동기화가 '[직방] 용산힐링룸' 으로 되돌리면 사라져 버린다)
+function keepGuest_(current, next) {
+  var cur = String(current || '');
+  var nxt = String(next || '');
+  if (nxt.indexOf('(') < 0 && cur.indexOf('(') >= 0) return cur;
+  return nxt;
+}
+
 function platformTag_(title) {
   var t = String(title || '');
   for (var i = 0; i < PLATFORM_TAGS.length; i++) {
@@ -178,7 +187,7 @@ function upsert_(body) {
       kept.has_key = true;
       return json_({ ok: true, key: key, result: kept });
     }
-    owned.setTitle(title);
+    owned.setTitle(keepGuest_(owned.getTitle(), title));
     owned.setAllDayDates(start, end);
     if (evColor) owned.setColor(evColor);
     if (location) owned.setLocation(location);
@@ -207,7 +216,7 @@ function upsert_(body) {
       if (iso_(sibling.getEndTime()) < endIso) sibling.setAllDayDates(sibling.getStartTime(), end);
       sibling.setDescription(replaceKeys_(sibling.getDescription(), family, tag));
     } else {
-      sibling.setTitle(title);
+      sibling.setTitle(keepGuest_(sibling.getTitle(), title));
       sibling.setAllDayDates(start, end);
       if (evColor) sibling.setColor(evColor);
       if (location) sibling.setLocation(location);
