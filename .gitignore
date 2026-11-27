@@ -8,3 +8,9 @@ state/*.tmp
 __pycache__/
 *.pyc
 state/devstate.json
+
+# 웹훅 시크릿(저장소·커밋 금지)
+.webhook_secret
+
+# 웹훅 URL(로컬 전용)
+.webhook_url

@@ -14,6 +14,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 import sync as runner  # noqa: E402
 from hrsync import notify  # noqa: E402
+from hrsync import gcal  # noqa: E402
 
 TODAY = date.today()
 D1 = (TODAY + timedelta(days=10)).isoformat()
@@ -166,6 +167,103 @@ class RunnerTest(unittest.TestCase):
         self.run_sync(m33, zb, mode="dry-run")
         self.assertEqual(zb.puts, [])
         self.assertFalse(os.path.exists(self.state))
+
+
+class CalendarRunnerTest(unittest.TestCase):
+    """캘린더 반영(웹훅) 경로: 실패해도 본체 동기화는 멈추지 않는다."""
+
+    def setUp(self):
+        self.tmp = tempfile.mkdtemp()
+        self.state = os.path.join(self.tmp, "state.json")
+        self.session = os.path.join(self.tmp, "session.json")
+        self.sent = []
+        self.alerts = []
+        self._orig = (runner.read_m33, runner.read_zb, notify.open_alert,
+                      notify.close_alerts, gcal.send)
+        self._env = {k: os.environ.get(k) for k in
+                     ("ZB_COOKIE", "ZB_EMAIL", "ZB_PASSWORD",
+                      "GCAL_WEBHOOK_URL", "GCAL_WEBHOOK_SECRET")}
+        os.environ["ZB_COOKIE"] = "dummy=1"
+        os.environ["GCAL_WEBHOOK_URL"] = "https://example.test/exec"
+        os.environ["GCAL_WEBHOOK_SECRET"] = "test-secret"
+        notify.open_alert = lambda title, body, key=None: (self.alerts.append(body) or (True, "test"))
+        notify.close_alerts = lambda note="": (0, "ok")
+
+        def fake_send(url, secret, ev, timeout=30):
+            self.sent.append(dict(ev))
+            return {"ok": True, "result": {"event_id": "evt-" + ev["key"],
+                                            "start": ev["start_date"],
+                                            "end": ev["end_date_exclusive"],
+                                            "action": "created"}}
+        gcal.send = fake_send
+
+    def tearDown(self):
+        (runner.read_m33, runner.read_zb, notify.open_alert,
+         notify.close_alerts, gcal.send) = self._orig
+        for k, v in self._env.items():
+            if v is None:
+                os.environ.pop(k, None)
+            else:
+                os.environ[k] = v
+
+    def run_sync(self, m33, zb, mode="apply"):
+        runner.read_m33 = lambda *a, **k: (m33, m33.room(), m33.schedules())
+        runner.read_zb = lambda *a, **k: (zb, zb.item())
+        old = sys.argv
+        sys.argv = ["sync.py", "--mode", mode, "--state", self.state, "--session", self.session]
+        try:
+            with contextlib.redirect_stdout(io.StringIO()):
+                return runner.main()
+        finally:
+            sys.argv = old
+
+    def test_apply_sends_calendar_and_records_state(self):
+        m33 = FakeM33(dates={D1: "booking"})
+        zb = FakeZB(cal={D1: "contracted"})
+        self.assertEqual(self.run_sync(m33, zb), 0)
+        keys = {ev["key"] for ev in self.sent}
+        self.assertIn(f"m33:{D1}:{D1}", keys)
+        self.assertIn(f"zb:{D1}:{D1}", keys)
+        st = json.load(open(self.state, encoding="utf-8"))
+        self.assertIn(f"zb:{D1}:{D1}", st["gcal"]["applied"])
+        self.assertTrue(st["gcal"]["applied"][f"zb:{D1}:{D1}"]["event_id"])
+
+    def test_same_content_not_resent(self):
+        m33 = FakeM33(dates={D1: "booking"})
+        zb = FakeZB(cal={D1: "contracted"})
+        self.run_sync(m33, zb)
+        first = len(self.sent)
+        self.assertGreater(first, 0)
+        self.run_sync(FakeM33(dates={D1: "booking"}), FakeZB(cal={D1: "contracted"}))
+        self.assertEqual(len(self.sent), first, "같은 내용을 다시 보냈습니다")
+
+    def test_dry_run_sends_nothing(self):
+        m33 = FakeM33(dates={D1: "booking"})
+        zb = FakeZB(cal={D1: "contracted"})
+        self.run_sync(m33, zb, mode="dry-run")
+        self.assertEqual(self.sent, [])
+
+    def test_calendar_failure_does_not_stop_blocking(self):
+        def boom(url, secret, ev, timeout=30):
+            raise gcal.GcalError("HTTP 500")
+        gcal.send = boom
+        m33 = FakeM33()
+        zb = FakeZB(cal={D1: "contracted"})
+        self.assertEqual(self.run_sync(m33, zb), 0)
+        self.assertEqual(m33.blocks, [(D1, D1)], "본체 차단이 중단되면 안 됩니다")
+        self.assertTrue(any("캘린더 반영 실패" in a for a in self.alerts), self.alerts)
+        st = json.load(open(self.state, encoding="utf-8"))
+        self.assertFalse((st.get("gcal") or {}).get("applied"), "실패를 반영 완료로 저장했습니다")
+
+    def test_without_webhook_url_only_plans(self):
+        os.environ.pop("GCAL_WEBHOOK_URL", None)
+        m33 = FakeM33(dates={D1: "booking"})
+        zb = FakeZB(cal={D1: "contracted"})
+        self.assertEqual(self.run_sync(m33, zb), 0)
+        self.assertEqual(self.sent, [])
+        self.assertEqual(self.alerts, [])
+        st = json.load(open(self.state, encoding="utf-8"))
+        self.assertIn(f"zb:{D1}:{D1}", st["last_run"]["gcal_todo_keys"])
 
 
 if __name__ == "__main__":

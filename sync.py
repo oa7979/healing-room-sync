@@ -19,7 +19,7 @@ import os
 import sys
 from datetime import date, datetime, timedelta, timezone
 
-from hrsync import notify, plan
+from hrsync import gcal, notify, plan
 from hrsync import state as statemod
 from hrsync.httpc import Client
 from hrsync.m33 import ROOM_ID, M33, M33Error
@@ -58,6 +58,11 @@ def fmt_range(a: str, b: str) -> str:
     if a == b:
         return f"{a}({DAYS[d.weekday()]})"
     return f"{a}~{b}"
+
+
+def last_day(ev: dict) -> str:
+    """캘린더 일정의 마지막 숙박일(end_date_exclusive 의 하루 전)."""
+    return (date.fromisoformat(ev["end_date_exclusive"]) - timedelta(days=1)).isoformat()
 
 
 def group_ranges(dates: dict, today: date, horizon: date, kinds: tuple[str, ...]) -> list[str]:
@@ -241,6 +246,32 @@ def main() -> int:
         if gone:
             removed.append(f"{label}: {', '.join(group_ranges({g: 'x' for g in gone}, today, horizon, ('x',)))}")
 
+    # ---------------------------------------------------------------- 캘린더 계획
+    # 삼삼엠투 booking·직방 contracted 구간을 Google 캘린더 종일 일정으로 맞춘다.
+    # 실제 쓰기는 Apps Script 웹앱이 하고, 여기서는 '이번에 보낼 것'만 고른다.
+    gcal_url = os.environ.get("GCAL_WEBHOOK_URL", "").strip()
+    gcal_secret = os.environ.get("GCAL_WEBHOOK_SECRET", "").strip()
+    gcal_events: list[dict] = []
+    gcal_todo: list[dict] = []
+    gcal_problems: list[str] = []
+    if m33_sched or zb_cal:
+        gcal_events = gcal.build_events(
+            m33_dates=(m33_sched or {}).get("dates"),
+            zb_dates=(zb_cal or {}).get("dates"),
+            contracts=(m33_sched or {}).get("contracts"),
+            today=today, horizon=horizon)
+        gcal_todo = gcal.pending(gcal_events, (st.get("gcal") or {}).get("applied"), t0)
+        todo_keys = {ev["key"] for ev in gcal_todo}
+        log("")
+        log(f"[캘린더] 있어야 할 일정 {len(gcal_events)}건 / 이번에 반영 {len(gcal_todo)}건"
+            + ("" if (gcal_url and gcal_secret) else " (웹훅 미설정 — 계획만)"))
+        if not gcal_events:
+            log("  확정된 예약 구간 없음")
+        for ev in gcal_events:
+            mark = "→ 반영" if ev["key"] in todo_keys else "· 최신"
+            log(f"  {mark} {ev['title']} {fmt_range(ev['start_date'], last_day(ev))}"
+                f" (색 {ev['color_id']})")
+
     # ---------------------------------------------------------------- 적용
     applied: list[str] = []
     if args.mode == "apply" and not problems:
@@ -301,6 +332,38 @@ def main() -> int:
                 except Exception as e:  # noqa: BLE001
                     problems.append(f"{target} 요금 저장 실패: {type(e).__name__}: {e}")
 
+        # 캘린더는 본체(날짜·가격 동기화)가 끝난 뒤에 따로 보낸다.
+        # 웹앱 장애 때문에 삼삼엠투↔직방 차단이 멈추지 않게 하기 위해서다.
+        if gcal_todo and gcal_url and gcal_secret:
+            applied_map = st.setdefault("gcal", {}).setdefault("applied", {})
+            for ev in gcal_todo:
+                span = fmt_range(ev["start_date"], last_day(ev))
+                try:
+                    data = gcal.send(gcal_url, gcal_secret, ev)
+                except gcal.GcalError as e:
+                    gcal_problems.append(f"캘린더 반영 실패 — {ev['title']} {span}: {e}")
+                    continue
+                res = data.get("result") or {}
+                bad = gcal.check_result(ev, data)
+                if bad:
+                    gcal_problems.append(f"캘린더 확인 실패 — {ev['title']} {span}: {bad}")
+                applied.append(f"캘린더 {ev['title']} {span} "
+                               f"{'반영' if not bad else '불일치'} "
+                               f"({res.get('action') or 'ok'})")
+                applied_map[ev["key"]] = {
+                    "sig": ev["sig"],
+                    "at": t0.isoformat(timespec="seconds"),
+                    "action": res.get("action"),
+                    "event_id": res.get("event_id"),
+                }
+        elif gcal_todo and not (gcal_url and gcal_secret):
+            log("")
+            log(f"[캘린더] GCAL_WEBHOOK_URL/SECRET이 없어 {len(gcal_todo)}건을 보내지 못했습니다"
+                " (계획만 기록)")
+
+    if gcal_problems:
+        problems.extend(gcal_problems)
+
     if args.mode == "apply":
         log("")
         log("[조치]")
@@ -338,6 +401,8 @@ def main() -> int:
         "add_to_m33": date_plan["add_to_m33"] if date_plan else None,
         "price_changes": [f"{c['dest']} {c['label']} {c['value']}" for c in
                           (price_plan["changes"] if price_plan else [])],
+        "gcal_event_keys": [ev["key"] for ev in gcal_events],
+        "gcal_todo_keys": [ev["key"] for ev in gcal_todo],
     }
 
     # ---------------------------------------------------------------- 알림
