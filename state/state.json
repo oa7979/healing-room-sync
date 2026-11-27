@@ -3,7 +3,7 @@
     "add_to_m33": [],
     "add_to_zb": [],
     "applied": [],
-    "at": "2026-11-27T14:08:41+09:00",
+    "at": "2026-11-28T00:04:08+09:00",
     "mode": "apply",
     "price_changes": [],
     "problems": []
@@ -258,11 +258,10 @@
       "weekly_rent": 219000
     }
   },
-  "updated_at": "2026-11-27T05:08:48+00:00",
+  "updated_at": "2026-11-27T15:04:15+00:00",
   "version": 1,
   "zb": {
     "dates": {
-      "2026-11-27": "blocked",
       "2026-11-28": "blocked",
       "2026-11-29": "contracted",
       "2026-11-30": "contracted",
