@@ -50,6 +50,8 @@ jobs:
           SMTP_USER: ${{ secrets.SMTP_USER }}
           SMTP_PASS: ${{ secrets.SMTP_PASS }}
           ALERT_TO: ${{ secrets.ALERT_TO }}
+          GCAL_WEBHOOK_URL: ${{ secrets.GCAL_WEBHOOK_URL }}
+          GCAL_WEBHOOK_SECRET: ${{ secrets.GCAL_WEBHOOK_SECRET }}
           STATE_PATH: state/state.json
           SESSION_PATH: state/session.json
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
