@@ -136,7 +136,9 @@ class M33:
             st = row.get("status")
             if st in (STATUS_BOOKED, STATUS_BLOCKED):
                 dates[row["date"]] = st
-        return {"dates": dates, "contracts": data.get("contracts") or []}
+        contracts = (data.get("contracts") or data.get("contractList")
+                     or data.get("reservations") or [])
+        return {"dates": dates, "contracts": contracts}
 
     # ----------------------------------------------------------------- writes
     def set_unavailable(self, start: date, end: date) -> None:
